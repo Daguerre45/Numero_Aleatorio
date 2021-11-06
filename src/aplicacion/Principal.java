@@ -9,7 +9,9 @@ public class Principal {
 		int numeroAleatorio;
 		int numeroAdivinar;
 		int caso = 0;
+		int contador = 0;
 		String nombre;
+		String respuesta;
 
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -41,22 +43,38 @@ public class Principal {
 					if (numeroAdivinar > numeroAleatorio) {
 						caso = 2;
 					}
+					if (numeroAdivinar > numeroUsuario) {
+						caso = 3;
+					}
 					break;
 				case 1:
 					System.out.println(nombre + " el numero a adivinar es más MAYOR");
+					contador++;
 					caso = 0;
 					break;
 				case 2:
 					System.out.println(nombre + " el numero a adivinar es más PEQUEÑO");
 					caso = 0;
+					contador++;
+					break;
+				case 3:
+					System.out.println(nombre + " el numero a adivinar no está entre los números que se han escogido");
+					System.out.println(nombre + " añada un número menor entre el 1 y " + numeroUsuario);
+					caso = 0;
 					break;
 				}
 			}
-			System.out.println("Enorabuena " + nombre + " adivaste el número");
+			System.out.println("Enorabuena " + nombre + " adivaste el número en " + (contador + 1) + " intentos");
+			System.out.println(
+					nombre + " quieres volver a jugar?(responder s si si quiere seguir o n si no quiere seguir)");
+			respuesta = sc.next();
+			if (respuesta == "s") {
+				caso = 0;
+			} else
+				System.out.println("Muchas gracias por jugar, hasta pronto");
 			sc.close();
 		} catch (Exception e) {
 			System.out.println("Añade un NUMERO no una letra");
 		}
 	}
-
 }
